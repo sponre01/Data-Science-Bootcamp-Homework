@@ -25,6 +25,26 @@ VBA was used to analyze yearly stock market data for total volume, yearly change
   ![alt text](https://github.com/sponre01/Data-Science-Bootcamp-Homework/blob/master/Homework_2_VBA/2014_hard_screenshot.PNG "2014 source data, complete 'hard' table")
 
 ## Homework 3 - Python
+Python was used in Visual Studio Code to run some basic analysis on both financial and poll data sets.
+- printed text files with the analysis results
+
+__Election Results__
+Total Votes: 3521001
+
+Khan: 63.0% (2218231)
+Correy: 20.0% (704200)
+Li: 14.0% (492940)
+O'Tooley: 3.0% (105630)
+
+Winner: Khan
+
+__Financial Analysis 2018-12-04__
+
+Total Months: 86
+Total: $38382578
+Average Change: $-2315.12
+Greatest increase in profits: $1926159 for Feb-2012
+Greatest decrease in profits: $-2196167 for Sep-2013
 
 ## Homweork 4 - Pandas
 
