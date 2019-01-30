@@ -58,15 +58,35 @@ GROUP BY last_name
 HAVING COUNT(0) > 1;
 
 -- 4c. The actor HARPO WILLIAMS was accidentally entered in the actor table as GROUCHO WILLIAMS. Write a query to fix the record.
-
+UPDATE 
+    actor
+SET 
+    first_name = "HARPO"
+WHERE
+    first_name = "GROUCHO" and last_name = "WILLIAMS";
 
 -- 4d. Perhaps we were too hasty in changing GROUCHO to HARPO. It turns out that GROUCHO was the correct name after all! 
 -- In a single query, if the first name of the actor is currently HARPO, change it to GROUCHO.
-
+UPDATE 
+    actor
+SET 
+    first_name = "GROUCH"
+WHERE
+    first_name = "HARPO";
 
 -- 5a. You cannot locate the schema of the address table. Which query would you use to re-create it?
-
-
+CREATE TABLE address_recreate(
+	`address_id` SMALLINT(5) UNSIGNED NOT NULL,
+    `address` VARCHAR(50) NOT NULL,
+	`address_2` VARCHAR(50) NULL DEFAULT NULL,
+	`district` VARCHAR(20) NOT NULL,
+	`city_id` SMALLINT(5) UNSIGNED NOT NULL,
+	`postal_code` VARCHAR(10) NULL DEFAULT NULL,
+	`phone` VARCHAR(20) NOT NULL,
+	`location` GEOMETRY NOT NULL,
+	`last_update` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY(`address_id`)
+);
 
 -- 6a. Use JOIN to display the first and last names, as well as the address, of each staff member. Use the tables staff and address:
 SELECT staff.first_name, staff.last_name, address.address
@@ -135,31 +155,96 @@ WHERE actor_id in
 
 -- 7c. You want to run an email marketing campaign in Canada, for which you will need the names and email addresses of all 
 -- Canadian customers. Use joins to retrieve this information.
-
+SELECT customer.first_name, customer.last_name, customer.email
+FROM country
+JOIN city ON
+country.country_id = city.country_id
+JOIN address ON
+city.city_id = address.city_id
+JOIN customer ON
+address.address_id = customer.address_id
+WHERE country = "Canada"
+;
 
 -- 7d. Sales have been lagging among young families, and you wish to target all family movies for a promotion. 
 -- Identify all movies categorized as family films.
-
+SELECT title 
+FROM film
+WHERE film_id in
+	(SELECT film_id 
+	FROM film_category
+	WHERE category_id in
+		(SELECT category_id 
+		FROM category
+		WHERE name = "Family"
+));
 
 -- 7e. Display the most frequently rented movies in descending order.
-
+SELECT film.title, COUNT(inventory.film_id) 'total rentals'
+FROM rental
+JOIN inventory ON
+rental.inventory_id = inventory.inventory_id
+JOIN film ON
+film.film_id = inventory.film_id
+GROUP BY film.film_id
+ORDER BY COUNT(0) DESC;
 
 -- 7f. Write a query to display how much business, in dollars, each store brought in.
-
+SELECT store.store_id, SUM(payment.amount) 'total business ($)'
+FROM payment
+JOIN staff ON
+payment.staff_id = staff.staff_id
+JOIN store ON
+staff.store_id = store.store_id
+GROUP BY store.store_id;
 
 -- 7g. Write a query to display for each store its store ID, city, and country.
-
+SELECT store.store_id, city.city, country.country
+FROM store
+JOIN address ON
+store.address_id = address.address_id
+JOIN city ON
+city.city_id = address.city_id
+JOIN country ON
+country.country_id = city.country_id;
 
 -- 7h. List the top five genres in gross revenue in descending order. 
 -- (Hint: you may need to use the following tables: category, film_category, inventory, payment, and rental.)
+SELECT category.name 'Genre', SUM(payment.amount) 'Gross Revenue'
+FROM category
+JOIN film_category ON
+film_category.category_id= category.category_id
+JOIN inventory ON
+inventory.film_id = film_category.film_id
+JOIN rental ON
+inventory.inventory_id = rental.inventory_id
+JOIN payment ON
+rental.rental_id=payment.rental_id
+GROUP BY category.name
+ORDER BY SUM(payment.amount) DESC
+LIMIT 5;
 
 
 -- 8a. In your new role as an executive, you would like to have an easy way of viewing the Top five genres by gross revenue. 
--- Use the solution from the problem above to create a view. If you haven't solved 7h, you can substitute another query to create a view.
-
+-- Use the solution from the problem above to create a view.
+CREATE VIEW `top_five_genres` AS 
+SELECT category.name 'Genre', SUM(payment.amount) 'Gross Revenue'
+FROM category
+JOIN film_category ON
+film_category.category_id= category.category_id
+JOIN inventory ON
+inventory.film_id = film_category.film_id
+JOIN rental ON
+inventory.inventory_id = rental.inventory_id
+JOIN payment ON
+rental.rental_id=payment.rental_id
+GROUP BY category.name
+ORDER BY SUM(payment.amount) DESC
+LIMIT 5;
 
 -- 8b. How would you display the view that you created in 8a?
-
+SELECT * 
+FROM top_five_genres;
 
 -- 8c. You find that you no longer need the view top_five_genres. Write a query to delete it.
-
+DROP VIEW top_five_genres;
