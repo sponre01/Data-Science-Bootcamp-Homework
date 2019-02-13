@@ -1,81 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-<!-- Head -->
 <head>
-  <meta charset="UTF-8">
-  <title>Lattitude</title>
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.13.4/dist/bootstrap-table.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-
-  <!-- [Navigation bar] -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-
-      <!-- Group toggle items versus Brand item for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="landing_page.html">Lattitude</a>
-      </div>
-
-      <!-- Put collapsible links on the right hand side -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="landing_page.html">Lattitude</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
           
-          <!-- Plots: a dropdown -->
-          <li class="dropdown">
-              <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item active">
+                  <a class="nav-link" href="comparisons_page.html">Comparison <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="data_page.html">Data</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Plots
+                    </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="visualization_page_1.html">Max Temperature</a>
+                    <a class="dropdown-item" href="visualization_page_2.html">Humidity</a>
+                    <a class="dropdown-item" href="visualization_page_3.html">Cloudiness</a>
+                    <a class="dropdown-item" href="visualization_page_4.html">Wind Speed</a>
+                  </div>
+                </li>
+            </div>
+          </nav>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-              </li>
-
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plots <span class="caret"></span></a>
-              
-              <div class="dropdown-menu" aria-labelledby="Plots">
-                  <a class="dropdown-item" href="visualization_page_1.html">Visualization 1</a>
-                  <a class="dropdown-item" href="visualization_page_2.html">Visualization 2</a>
-                  <a class="dropdown-item" href="visualization_page_3.html">Visualization 3</a>
-                  <a class="dropdown-item" href="visualization_page_4.html">Visualization 4</a>
-              </div>
-          </li>
-
-          <!-- Comparison: link -->
-          <li><a href="comparisons_page.html">Comparison</a></li>
-
-          <!-- Data: link -->
-          <li><a href="data_page.html">Data</a></li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
+<title>Lattitude: Latitude with Attitude</title>
 
   <!-- Main content: -->
    <!-- Row 1: title -->
@@ -84,11 +50,12 @@
      <p>The following table includes all of the data used for plotting during this project</p>
 
 
-     <!-- table from html file -->
+     <!-- table from html file - responsible bootstramp component-->
 
 <div class="table-responsive">
 <table class="table table-striped">
-    <thead class="thead-dark">
+<thead class="thead-dark">
+  
  <col width=64 span=11 style='width:48pt'>
  <tr height=19 style='height:14.4pt'>
   <th height=19 width=64 style='height:14.4pt;width:48pt'>City_ID</th>
@@ -7233,6 +7200,10 @@
 </tbody>
 </table>
 </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
